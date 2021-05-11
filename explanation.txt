@@ -1,0 +1,69 @@
+--- Server Folder ---
+* The classes were found only within the server folder.
+
+@class Elections
+properties: 
+-ListOfElections  {Array<Objcet>}  Holds all election data of all time.
+methods:
+-setElectionList 
+* Goes through all the elections made during these periods
+* and for each election event brings the relevant data of
+* these election and store that in ListOfElections varliable.
+* @param  {Number}  startYear  intial year of the election
+* @param  {Number}  finalYear  final year of the election
+
+
+@class SingleElectionData
+properties:  
+- data  {Array<Object>}  holds Holds a specific sub-election data
+- scraper  {Scraper}  scraping data from officel site.
+methods:
+- getSpecificElectionData
+* Creating scraper that brings All data
+* from specific Election number.
+* @params  {Number}  num  Election Number
+* @return  {Array}
+
+
+@class Scraper
+methods:
+- fetchData1To20
+* Scraping Specific election data using puppeteer.
+* can only bring data from 1-20 election event.
+* @param  {Number}   electionNumber   Election numnber
+* @return   {Array<String>}   AllElectionData   data from specified election number
+- fetchData21To24
+* Scraping Specific election data using puppeteer.
+* can only bring data from 21-24 election event.
+* @param  {Number}   electionNumber   Election numnber
+* @return   {Array<String>}   AllElectionData   data from specified election number
+
+
+Answer on qouestions:
+why you designed it this way and What kind of advantage does it give you?
+ANSWER:
+
+I designed it to have scalability to the project.
+For example if I want to scrape data from other 
+sites tomorrow, I can add it to the Scraper class 
+and then use it where I want.
+This gives me an advantage because I do not have 
+to recreate everything but use an existing class 
+designed to serve me as a scraper when I need to 
+from where I need to.
+
+In addition, I separated data on individual election 
+results and data on all election results.
+The Elections Class holds data for the entire 
+election period we have specified.
+While the SingleElectionData class holds data for 
+one specific election period.
+This gives me an advantage in a few things:
+If I want to change the way I bring the election 
+data tomorrow, I should only do so in 
+SingleElectionData and not in the election.
+
+I created this separation so that each department 
+would be responsible for a different part and if 
+I wanted to change something I would have to change 
+only one department and not all of them.
